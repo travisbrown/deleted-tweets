@@ -1,20 +1,43 @@
-The following list shows the top 100 Twitter accounts by number of deleted or unavailable tweets that have
-scraped by my [cancel-culture](https://github.com/travisbrown/cancel-culture/) project.
+## About the project
 
-The original motivation for this project was a [cease and desist letter](https://gist.github.com/travisbrown/d9e2e727d7a43b9be4ce6e05c85e1626)
+The original motivation for this project was a [cease and desist letter][cease-and-desist]
 that I received from John De Goes (a prominent conference organizer in the Scala community),
 who claims that I defamed him by quoting abusive and white-nationalist-friendly tweets that he had deleted.
-You can read more about that situation [here](https://meta.plasm.us/posts/2020/07/25/response-to-john-de-goes/).
+You can read more about that situation [here][response-to-de-goes].
 
-The dataset now includes 7,269,736 distinct deleted or unavailable tweets from 2,851,749 Twitter accounts,
-out of a total of 22,517,275 tweets scraped from 12,055,266 pages from the [Wayback Machine](https://web.archive.org).
-Please note that none of this content was accessed directly from Twitter or the Twitter API.
+## Datasets
 
-I'm planning to launch a full-text search interface for these deleted tweets in the next couple of months,
-and would be happy to share the data privately (or generate
-[deleted tweet reports for individual accounts](https://gist.github.com/travisbrown/059310042193a2e143408b05bdc2278d))
-in the meantime.
-This repository will eventually include additional metadata and open source code related to indexing and the search interface.
+We've currently published the following metadata:
+
+* [Suspended account information](data/suspended/README.md)
+
+The complete dataset now includes 11,395,758 distinct deleted or unavailable tweets from 1,109,230 Twitter accounts,
+out of a total of 38,218,401 tweets from 3,730,580 accounts scraped from 20,812,445 Wayback Machine pages.
+
+## Methodology
+
+Please note that none of the content linked here or associated with this project was accessed directly from Twitter.
+All data was gathered from the [Wayback Machine][wayback-machine] over several months, via the following steps:
+
+* We choose a set of seed accounts, mostly representing far-right activists associated with [LambdaConf][lambdaconf], Gamergate, QAnon, etc.
+* We use the [Wayback Machine's CDX index][wayback-machine-cdx] to list all archived tweet URLs for these accounts.
+* We download these archived pages (which are a mix of HTML and JSON) from the Wayback Machine, saving the Wayback Machine's "original" version of each page, together with the Wayback Machine's digest for that page.
+* We parse these pages to extract information about individual tweets and Twitter accounts.
+* We identify retweets, replies, and other relationships between accounts, and use these relationships to add new accounts to the download queue.
+* We repeat these steps with the updated set of accounts.
+
+Most of this process is automated using tools from the [cancel-culture] project.
+
+## Future plans
+
+We're planning to launch a full-text search interface for these deleted tweets in the next couple of months.
+In the meantime please contact [me][travisbrown] on Twitter if you're interested in
+getting access to the data or in generating
+[deleted tweet reports for individual accounts][deleted-tweet-report-example].
+
+## Current top hundred accounts
+
+The following list shows the current top 100 Twitter accounts by number of deleted or unavailable tweets.
 
 ```
   71039 JackPosobiec
@@ -118,3 +141,12 @@ This repository will eventually include additional metadata and open source code
    3122 jondelarroz
    3091 peterboghossian
 ```
+
+[cancel-culture]: https://github.com/travisbrown/cancel-culture
+[cease-and-desist]: https://gist.github.com/travisbrown/d9e2e727d7a43b9be4ce6e05c85e1626
+[deleted-tweet-report-example]: https://gist.github.com/travisbrown/059310042193a2e143408b05bdc2278d
+[lambdaconf]: https://meta.plasm.us/posts/2019/09/01/jdg-and-the-fp-community/
+[response-to-de-goes]: https://meta.plasm.us/posts/2020/07/25/response-to-john-de-goes/
+[travisbrown]: https://twitter.com/travisbrown
+[wayback-machine]: https://archive.org/web/
+[wayback-machine-cdx]: https://github.com/internetarchive/wayback/blob/master/wayback-cdx-server/README.md
