@@ -12,8 +12,8 @@ We've currently published the following metadata:
 * [Suspended account information](data/suspended/README.md)
 * [Retweet counts](data/retweets/README.md)
 
-The complete dataset now includes 11,395,758 distinct deleted or unavailable tweets from 1,109,230 Twitter accounts,
-out of a total of 38,218,401 tweets from 3,730,580 accounts scraped from 20,812,445 Wayback Machine pages.
+The complete dataset now includes 25,007,143 distinct deleted or unavailable tweets,
+out of a total of 70,688,355 tweets from 5,201,866 accounts scraped from 42,696,221 Wayback Machine pages.
 
 ## Methodology
 
